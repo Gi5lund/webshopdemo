@@ -10,16 +10,16 @@ import java.util.List;
 public class ProductRepository
 	{
 		// database propertie
-		private final static	String db_URL="jdbs:mysql://localhost:3306/webshopdemo";
-		private final String uid="root;";
+		private final static	String db_URL="jdbc:mysql://localhost:3306/webshopdemo";
+		private final String uid="root";
 		private final String pwd="Pegasus2606";
 
-		public List<Product> getAll(){
+		public  List<Product> getAll(){
 			List<Product> productList=new ArrayList<>();
 			try {
 				Connection connection= DriverManager.getConnection(db_URL,uid,pwd);
 				Statement statement=connection.createStatement();
-				final String SQL_QUERY="SELECT * FROM products";
+				final String SQL_QUERY="SELECT * FROM webshopdemo.products";
 				ResultSet resultSet=statement.executeQuery(SQL_QUERY);
 				while (resultSet.next()){
 					int id=resultSet.getInt(1);
