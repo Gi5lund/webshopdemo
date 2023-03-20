@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public class ProductRepository
 	{
-		// database propertie
-		private final static	String db_URL="jdbc:mysql://localhost:3306/webshopdemo";
-		private final String uid="root";
+		// database properties
+		private final static	String db_URL="jdbc:mysql://mglinux.mysql.database.azure.com:3306/webshopdemo";
+		private final String uid="Hermes";
 		private final String pwd="Pegasus2606";
 
 		public  List<Product> getAll(){
@@ -27,7 +27,7 @@ public class ProductRepository
 					double price=resultSet.getDouble(3);
 					Product product=new Product(id,name,price);
 					productList.add(product);
-					System.out.println(product);
+					//System.out.println(product);
 				}
 			}catch (SQLException e){
 				System.out.println("could not query databse");
