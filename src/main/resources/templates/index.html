@@ -12,15 +12,23 @@
     <th>ID</th>
     <th>Produktnamvn</th>
     <th>Pris</th>
+    <th>Opdater</th>
     </thead>
     <tbody>
     <tr th:each="product :${products}">
       <td th:text="${product.id}"></td>
       <td th:text="${product.name}"></td>
       <td th:text="${product.price}"></td>
+      <td>
+        <a th:href="@{'/update/'+${product.id}}" href="/update">Opdater</a>
+      </td>
+      <td>
+        <a th:href="@{'/delete/'+${product.id}}" href="/delete">Slet</a>
+      </td>
     </tr>
     </tbody>
   </table>
+  <a href="/create">Opret nyt produkt</a>
 </div>
 </body>
 </html>

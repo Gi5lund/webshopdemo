@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret nyt produkt</title>
+</head>
+<body>
+<div class="container">
+  <h1>Opret nyt produkt</h1>
+  <form action="create" method="post">
+    <label for="name-field">Produkt navn</label>
+    <input id="name-field" name="product-name" type="text">
+
+    <label for="price-field">Produkt pris</label>
+    <input id="price-field" name="product-price" type="number" step="0.01">
+    <input type="submit" value="Opret produkt">
+  </form>
+
+</div>
+</body>
+</html>
