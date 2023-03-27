@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="WebshopdemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <envs>
+      <env name="DBHOST" value="jdbc:mysql://mglinux.mysql.database.azure.com:3306/webshopdemo?useSSL=true" />
+      <env name="DBUSERNAME" value="Hermes" />
+      <env name="PASSWORD" value="Pegasus2606" />
+    </envs>
+    <module name="webshopdemo" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="dk.kea.webshopdemo.WebshopdemoApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

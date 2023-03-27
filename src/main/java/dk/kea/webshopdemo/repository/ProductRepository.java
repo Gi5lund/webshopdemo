@@ -11,7 +11,7 @@ import java.util.List;
 public class ProductRepository
 	{
 		// database properties injectes med Value
-		//private final static	String db_URL="jdbc:mysql://localhost:3306/webshopdemo";
+		//private final static	String db_URL="jdbc:mysql://mglinux.mysql.database.azure.com:3306/webshopdemo?useSSL=true";
 		//private final String uid="root";
 		//private final String pwd="Pegasus2606";
 		@Value("${spring.datasource.url}")
