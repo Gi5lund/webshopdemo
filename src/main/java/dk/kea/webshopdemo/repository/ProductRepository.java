@@ -1,6 +1,8 @@
 package dk.kea.webshopdemo.repository;
 
 import dk.kea.webshopdemo.model.Product;
+import dk.kea.webshopdemo.utility.ConnectionManager;
+import dk.kea.webshopdemo.utility.StatementManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -12,18 +14,18 @@ public class ProductRepository
 	{
 		// database properties injectes med Value
 		//private final static	String db_URL="jdbc:mysql://mglinux.mysql.database.azure.com:3306/webshopdemo?useSSL=true";
-		//private final String uid="root";
+		//private final String uid="Hermes";
 		//private final String pwd="Pegasus2606";
 		@Value("${spring.datasource.url}")
-		private String db_URL;
+		private String DB_URL;
 		@Value("${spring.datasource.username}")
-		private String uid;
+		private String UID;
 		@Value("${spring.datasource.password}")
-		private String pwd;
+		private String PWD;
 		public  List<Product> getAll(){
 			List<Product> productList=new ArrayList<>();
 			try {
-				Connection connection= DriverManager.getConnection(db_URL,uid,pwd);
+				Connection connection= ConnectionManager.getConnection(DB_URL, UID, PWD);
 				Statement statement=connection.createStatement();
 				final String SQL_QUERY="SELECT * FROM webshopdemo.products";
 				ResultSet resultSet=statement.executeQuery(SQL_QUERY);
@@ -47,9 +49,9 @@ public class ProductRepository
 			{
 				// connect to db:
 				try {
-					Connection connection= DriverManager.getConnection(db_URL,uid,pwd);
+					//Connection connection= ConnectionManager.getConnection(DB_URL, UID, PWD);
 					final String createQuery="INSERT INTO products(name,price) VALUES (?,?)";
-					PreparedStatement preparedStatement=connection.prepareStatement(createQuery);
+					PreparedStatement preparedStatement= StatementManager.getPreparedStatement(DB_URL,UID,PWD,createQuery);
 
 					//sæt atributter
 					preparedStatement.setString(1,newProduct.getName());
@@ -67,11 +69,11 @@ public class ProductRepository
 			public void updateProduct(Product product){
 			// connect to DB
 				try {
-					Connection connection=DriverManager.getConnection(db_URL,uid,pwd);
+				//	Connection connection=ConnectionManager.getConnection(DB_URL, UID, PWD);
 					//SQL Statement
 					final String UPDATE_QUERY=" UPDATE products SET name= ?, price =? WHERE id=?";
 					// Prepared Statement
-					PreparedStatement preparedStatement=connection.prepareStatement(UPDATE_QUERY);
+					PreparedStatement preparedStatement=StatementManager.getPreparedStatement(DB_URL,UID,PWD,UPDATE_QUERY);
 					// set parameters
 					String name=product.getName();
 					double price= product.getPrice();
@@ -96,9 +98,9 @@ public class ProductRepository
 				product.setId(updateId);
 				try {
 					//DB connection
-					Connection connection=DriverManager.getConnection(db_URL,uid,pwd);
+					//Connection connection=ConnectionManager.getConnection(DB_URL, UID, PWD);
 					// prepared Statement
-					PreparedStatement preparedStatement=connection.prepareStatement(FIND_QUERY);
+					PreparedStatement preparedStatement=StatementManager.getPreparedStatement(DB_URL,UID,PWD,FIND_QUERY);
 					//set parameters
 					preparedStatement.setInt(1,updateId);
 
@@ -129,10 +131,10 @@ public class ProductRepository
 				try {
 
 
-					Connection connection = DriverManager.getConnection(db_URL, uid, pwd);
+					//Connection connection = ConnectionManager.getConnection(DB_URL, UID, PWD);
 
 					//prepared statemenets
-					PreparedStatement preparedStatement = connection.prepareStatement(DELETE_QUERY);
+					PreparedStatement preparedStatement = StatementManager.getPreparedStatement(DB_URL,UID,PWD,DELETE_QUERY);
 					//set param
 					preparedStatement.setInt(1,id);
 					//execute
